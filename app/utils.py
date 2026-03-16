@@ -27,7 +27,7 @@ def matchingImage(current_image, template_image):
 
 def predictPothole(image_path):
     # Make prediction
-    model = YOLO("app\\model\\best.pt")  # Load a custom model
+    model = YOLO("app\\model\\best_11_32.pt")  # Load a custom model
     print(image_path)
     results = model.predict(
         source=image_path,  # Replace with your image path
@@ -39,6 +39,8 @@ def predictPothole(image_path):
     if len(results[0].boxes) > 0:
         _, buffer = cv2.imencode(".jpg", results[0].plot())
         buffer = base64.b64encode(buffer).decode("utf-8")
+        print("Pothole detected")
         return(json.dumps({"pothole": True,"image": buffer}))  # Return "yes" if pothole is detected along with annotated image
     else:
+        print("No pothole detected")
         return(json.dumps({"pothole": False}))  # Return "no" if no pothole is detected
