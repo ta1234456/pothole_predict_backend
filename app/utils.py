@@ -27,7 +27,7 @@ def matchingImage(current_image, template_image):
 
 def predictPothole(image_path):
     # Make prediction
-    model = YOLO("app\\model\\best_11_32.pt")  # Load a custom model
+    model = YOLO("app\\model\\best_d12_11_32.pt")  # Load a custom model
     print(image_path)
     results = model.predict(
         source=image_path,  # Replace with your image path
